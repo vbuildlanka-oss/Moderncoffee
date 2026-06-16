@@ -18,10 +18,10 @@ export default function NewsletterCTA() {
   };
 
   return (
-    <section id="newsletter" className="bg-espresso text-cream py-28 md:py-40 grain relative overflow-hidden">
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-10 text-center">
+    <section id="newsletter" className="bg-espresso text-cream py-24 md:py-40 grain relative overflow-hidden">
+      <div className="relative z-10 max-w-[1100px] mx-auto px-5 md:px-10 text-center">
         <span className="font-mono-label text-cream/60">05 / Stay close</span>
-        <h2 className="font-display text-5xl md:text-7xl mt-4 leading-[0.95]">
+        <h2 className="font-display text-[12vw] sm:text-6xl md:text-7xl mt-4 leading-[0.95]">
           First sip on us.<br />
           <span className="italic text-caramel">10% off your first order.</span>
         </h2>
@@ -34,7 +34,7 @@ export default function NewsletterCTA() {
               e.preventDefault();
               if (email) setDone(true);
             }}
-            className="mt-12 max-w-xl mx-auto flex items-center gap-2 border-b border-cream/30 pb-3"
+            className="mt-10 md:mt-12 max-w-xl mx-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-2 sm:border-b sm:border-cream/30 sm:pb-3"
           >
             <input
               type="email"
@@ -42,11 +42,11 @@ export default function NewsletterCTA() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="flex-1 bg-transparent outline-none placeholder:text-cream/40 text-lg py-2"
+              className="flex-1 bg-transparent outline-none placeholder:text-cream/40 text-lg py-3 border-b border-cream/30 sm:border-0 text-center sm:text-left"
               aria-label="Email"
             />
             <div
-              className="relative p-4 -m-4"
+              className="relative p-0 sm:p-4 sm:-m-4 flex justify-center"
               onMouseMove={onMove}
               onMouseLeave={onLeave}
             >
