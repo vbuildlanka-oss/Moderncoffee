@@ -13,7 +13,7 @@ const drinks = [
 
 export default function MenuScroller() {
   const ref = useGsapContext<HTMLElement>(() => {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || isMobileViewport()) return;
     const track = ref.current?.querySelector<HTMLElement>("[data-menu-track]");
     if (!track) return;
 
