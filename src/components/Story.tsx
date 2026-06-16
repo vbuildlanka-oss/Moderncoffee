@@ -31,30 +31,44 @@ const stats = [
 export default function Story() {
   const ref = useGsapContext<HTMLElement>((_self, refObj) => {
     if (prefersReducedMotion()) return;
+    const mobile = isMobileViewport();
 
-    const cards = gsap.utils.toArray<HTMLElement>("[data-story-card]");
-    const headings = gsap.utils.toArray<HTMLElement>("[data-story-heading]");
+    if (!mobile) {
+      const cards = gsap.utils.toArray<HTMLElement>("[data-story-card]");
+      const headings = gsap.utils.toArray<HTMLElement>("[data-story-heading]");
 
-    headings.forEach((h, i) => gsap.set(h, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 }));
-    cards.forEach((c, i) => gsap.set(c, { opacity: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.96 }));
+      headings.forEach((h, i) => gsap.set(h, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 }));
+      cards.forEach((c, i) => gsap.set(c, { opacity: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.96 }));
 
-    const total = chapters.length;
-    ScrollTrigger.create({
-      trigger: refObj.current,
-      start: "top top",
-      end: `+=${(total - 1) * 100}%`,
-      pin: ".story-pin",
-      scrub: 0.6,
-      onUpdate: (self) => {
-        const idx = Math.min(total - 1, Math.floor(self.progress * total));
-        headings.forEach((h, i) =>
-          gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }),
-        );
-        cards.forEach((c, i) =>
-          gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }),
-        );
-      },
-    });
+      const total = chapters.length;
+      ScrollTrigger.create({
+        trigger: refObj.current,
+        start: "top top",
+        end: `+=${(total - 1) * 100}%`,
+        pin: ".story-pin",
+        scrub: 0.6,
+        onUpdate: (self) => {
+          const idx = Math.min(total - 1, Math.floor(self.progress * total));
+          headings.forEach((h, i) =>
+            gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }),
+          );
+          cards.forEach((c, i) =>
+            gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }),
+          );
+        },
+      });
+    } else {
+      // Mobile: fade chapters in on scroll, no pinning
+      gsap.utils.toArray<HTMLElement>("[data-mobile-chapter]").forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 40,
+          duration: 0.9,
+          ease: "expo.out",
+          scrollTrigger: { trigger: el, start: "top 80%" },
+        });
+      });
+    }
 
     gsap.utils.toArray<HTMLElement>("[data-counter]").forEach((el) => {
       const target = Number(el.dataset.counter);
