@@ -1,5 +1,5 @@
 import { useGsapContext } from "@/hooks/useGsapContext";
-import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
 const chapters = [
   {
@@ -29,7 +29,7 @@ const stats = [
 ];
 
 export default function Story() {
-  const ref = useGsapContext<HTMLElement>(() => {
+  const ref = useGsapContext<HTMLElement>((_self, refObj) => {
     if (prefersReducedMotion()) return;
 
     const cards = gsap.utils.toArray<HTMLElement>("[data-story-card]");
@@ -40,19 +40,22 @@ export default function Story() {
 
     const total = chapters.length;
     ScrollTrigger.create({
-      trigger: ref.current,
+      trigger: refObj.current,
       start: "top top",
       end: `+=${(total - 1) * 100}%`,
       pin: ".story-pin",
       scrub: 0.6,
       onUpdate: (self) => {
         const idx = Math.min(total - 1, Math.floor(self.progress * total));
-        headings.forEach((h, i) => gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }));
-        cards.forEach((c, i) => gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }));
+        headings.forEach((h, i) =>
+          gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }),
+        );
+        cards.forEach((c, i) =>
+          gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }),
+        );
       },
     });
 
-    // counters
     gsap.utils.toArray<HTMLElement>("[data-counter]").forEach((el) => {
       const target = Number(el.dataset.counter);
       const obj = { v: 0 };
@@ -66,8 +69,6 @@ export default function Story() {
     });
   }, []);
 
-  const { ScrollTrigger } = require("@/lib/gsap");
-
   return (
     <section ref={ref} id="story" className="relative bg-background">
       <div className="story-pin min-h-[100dvh] flex items-center">
@@ -76,9 +77,7 @@ export default function Story() {
             {chapters.map((c, i) => (
               <div key={i} data-story-heading className="absolute inset-0 flex flex-col justify-center">
                 <span className="font-mono-label text-mutedtext">{c.label}</span>
-                <h2 className="font-display text-5xl md:text-7xl leading-[0.95] mt-4">
-                  {c.title}
-                </h2>
+                <h2 className="font-display text-5xl md:text-7xl leading-[0.95] mt-4">{c.title}</h2>
                 <p className="mt-6 max-w-md text-mutedtext text-lg leading-relaxed">{c.body}</p>
               </div>
             ))}
