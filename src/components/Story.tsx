@@ -1,5 +1,5 @@
 import { useGsapContext } from "@/hooks/useGsapContext";
-import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, ScrollTrigger, prefersReducedMotion, isMobileViewport } from "@/lib/gsap";
 
 const chapters = [
   {
