@@ -10,10 +10,10 @@ const items = [
 export default function Marquee() {
   const loop = [...items, ...items, ...items];
   return (
-    <div className="border-y border-border bg-background py-6 overflow-hidden">
-      <div className="flex gap-12 whitespace-nowrap animate-[marquee_40s_linear_infinite]">
+    <div className="border-y border-border bg-background py-4 md:py-6 overflow-hidden">
+      <div className="flex gap-8 md:gap-12 whitespace-nowrap animate-[marquee_40s_linear_infinite]">
         {loop.map((t, i) => (
-          <span key={i} className="font-display italic text-3xl md:text-5xl text-foreground/80 flex items-center gap-12">
+          <span key={i} className="font-display italic text-2xl md:text-5xl text-foreground/80 flex items-center gap-8 md:gap-12">
             {t}
             <span className="text-caramel">✦</span>
           </span>
