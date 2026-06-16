@@ -1,5 +1,5 @@
 import { useGsapContext } from "@/hooks/useGsapContext";
-import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, ScrollTrigger, prefersReducedMotion, isMobileViewport } from "@/lib/gsap";
 
 const chapters = [
   {
@@ -31,30 +31,44 @@ const stats = [
 export default function Story() {
   const ref = useGsapContext<HTMLElement>((_self, refObj) => {
     if (prefersReducedMotion()) return;
+    const mobile = isMobileViewport();
 
-    const cards = gsap.utils.toArray<HTMLElement>("[data-story-card]");
-    const headings = gsap.utils.toArray<HTMLElement>("[data-story-heading]");
+    if (!mobile) {
+      const cards = gsap.utils.toArray<HTMLElement>("[data-story-card]");
+      const headings = gsap.utils.toArray<HTMLElement>("[data-story-heading]");
 
-    headings.forEach((h, i) => gsap.set(h, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 }));
-    cards.forEach((c, i) => gsap.set(c, { opacity: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.96 }));
+      headings.forEach((h, i) => gsap.set(h, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 }));
+      cards.forEach((c, i) => gsap.set(c, { opacity: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.96 }));
 
-    const total = chapters.length;
-    ScrollTrigger.create({
-      trigger: refObj.current,
-      start: "top top",
-      end: `+=${(total - 1) * 100}%`,
-      pin: ".story-pin",
-      scrub: 0.6,
-      onUpdate: (self) => {
-        const idx = Math.min(total - 1, Math.floor(self.progress * total));
-        headings.forEach((h, i) =>
-          gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }),
-        );
-        cards.forEach((c, i) =>
-          gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }),
-        );
-      },
-    });
+      const total = chapters.length;
+      ScrollTrigger.create({
+        trigger: refObj.current,
+        start: "top top",
+        end: `+=${(total - 1) * 100}%`,
+        pin: ".story-pin",
+        scrub: 0.6,
+        onUpdate: (self) => {
+          const idx = Math.min(total - 1, Math.floor(self.progress * total));
+          headings.forEach((h, i) =>
+            gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }),
+          );
+          cards.forEach((c, i) =>
+            gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }),
+          );
+        },
+      });
+    } else {
+      // Mobile: fade chapters in on scroll, no pinning
+      gsap.utils.toArray<HTMLElement>("[data-mobile-chapter]").forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 40,
+          duration: 0.9,
+          ease: "expo.out",
+          scrollTrigger: { trigger: el, start: "top 80%" },
+        });
+      });
+    }
 
     gsap.utils.toArray<HTMLElement>("[data-counter]").forEach((el) => {
       const target = Number(el.dataset.counter);
@@ -71,24 +85,41 @@ export default function Story() {
 
   return (
     <section ref={ref} id="story" className="relative bg-background">
-      <div className="story-pin min-h-[100dvh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 py-24">
-          <div className="lg:col-span-6 relative min-h-[300px] lg:min-h-[60vh]">
-            {chapters.map((c, i) => (
-              <div key={i} data-story-heading className="absolute inset-0 flex flex-col justify-center">
-                <span className="font-mono-label text-mutedtext">{c.label}</span>
-                <h2 className="font-display text-5xl md:text-7xl leading-[0.95] mt-4">{c.title}</h2>
-                <p className="mt-6 max-w-md text-mutedtext text-lg leading-relaxed">{c.body}</p>
-              </div>
-            ))}
+      {/* Mobile: natural stacked chapters */}
+      <div className="lg:hidden max-w-[1400px] mx-auto px-5 py-20 space-y-20">
+        {chapters.map((c, i) => (
+          <div key={i} data-mobile-chapter className="space-y-6">
+            <div className="aspect-[4/5] rounded-md overflow-hidden">
+              <img src={c.img} alt={c.title} className="size-full object-cover" loading="lazy" />
+            </div>
+            <span className="font-mono-label text-mutedtext">{c.label}</span>
+            <h2 className="font-display text-5xl leading-[0.95] tracking-tight">{c.title}</h2>
+            <p className="text-mutedtext text-base leading-relaxed">{c.body}</p>
           </div>
+        ))}
+      </div>
 
-          <div className="lg:col-span-6 relative aspect-[4/5] lg:aspect-auto lg:h-[70vh]">
-            {chapters.map((c, i) => (
-              <div key={i} data-story-card className="absolute inset-0 rounded-md overflow-hidden">
-                <img src={c.img} alt={c.title} className="size-full object-cover" loading="lazy" />
-              </div>
-            ))}
+      {/* Desktop: pinned scrub */}
+      <div className="hidden lg:block">
+        <div className="story-pin min-h-[100dvh] flex items-center">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 py-24">
+            <div className="lg:col-span-6 relative min-h-[300px] lg:min-h-[60vh]">
+              {chapters.map((c, i) => (
+                <div key={i} data-story-heading className="absolute inset-0 flex flex-col justify-center">
+                  <span className="font-mono-label text-mutedtext">{c.label}</span>
+                  <h2 className="font-display text-5xl md:text-7xl leading-[0.95] mt-4">{c.title}</h2>
+                  <p className="mt-6 max-w-md text-mutedtext text-lg leading-relaxed">{c.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="lg:col-span-6 relative aspect-[4/5] lg:aspect-auto lg:h-[70vh]">
+              {chapters.map((c, i) => (
+                <div key={i} data-story-card className="absolute inset-0 rounded-md overflow-hidden">
+                  <img src={c.img} alt={c.title} className="size-full object-cover" loading="lazy" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

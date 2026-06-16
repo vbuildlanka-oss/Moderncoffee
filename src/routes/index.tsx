@@ -36,7 +36,17 @@ function Index() {
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShowSticky(window.scrollY > window.innerHeight * 0.9);
+    const onScroll = () => {
+      const past = window.scrollY > window.innerHeight * 0.9;
+      const newsletter = document.getElementById("newsletter");
+      let nearNewsletter = false;
+      if (newsletter) {
+        const r = newsletter.getBoundingClientRect();
+        nearNewsletter = r.top < window.innerHeight && r.bottom > 0;
+      }
+      setShowSticky(past && !nearNewsletter);
+    };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -55,7 +65,7 @@ function Index() {
 
       <a
         href="#newsletter"
-        className={`md:hidden fixed bottom-4 left-4 right-4 z-40 pill pill-primary justify-center transition-all duration-500 ${
+        className={`md:hidden fixed bottom-4 left-4 right-4 z-40 pill pill-primary justify-center shadow-lg transition-all duration-500 ${
           showSticky ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
         }`}
       >
