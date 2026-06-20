@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="lg:col-span-7 relative z-10 order-2 lg:order-1" data-parallax-text>
           <div className="overflow-hidden">
             <span data-reveal-label className="font-mono-label inline-block text-mutedtext">
-              01 — Specialty Coffee, Est. 2018
+              Specialty Coffee, Est. 2018
             </span>
           </div>
 
@@ -83,7 +83,7 @@ export default function Hero() {
             fetchPriority="high"
           />
           <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 flex items-end justify-between text-cream">
-            <span className="font-mono-label text-[0.6rem] md:text-xs">N° 001 / Signature Espresso</span>
+            <span className="font-mono-label text-[0.6rem] md:text-xs">Signature Espresso</span>
             <span className="font-display italic text-xl md:text-2xl">est. ’18</span>
           </div>
         </div>

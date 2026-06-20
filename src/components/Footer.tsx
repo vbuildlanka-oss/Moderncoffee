@@ -45,8 +45,8 @@ export default function Footer() {
           <div>
             <div className="font-mono-label text-cream/60">Follow</div>
             <div className="mt-4 flex gap-4">
-              <a href="#" className="hover:text-caramel transition" aria-label="Instagram"><Instagram className="size-5" /></a>
-              <a href="#" className="hover:text-caramel transition" aria-label="Twitter"><Twitter className="size-5" /></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-caramel transition" aria-label="Instagram"><Instagram className="size-5" /></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-caramel transition" aria-label="Twitter"><Twitter className="size-5" /></a>
             </div>
           </div>
         </div>

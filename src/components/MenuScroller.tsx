@@ -1,6 +1,7 @@
 import { useGsapContext } from "@/hooks/useGsapContext";
 import { gsap, ScrollTrigger, prefersReducedMotion, isMobileViewport } from "@/lib/gsap";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 const drinks = [
   { name: "Cortado", price: "$4.50", note: "Equal parts espresso & steamed milk.", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=900&q=80" },
@@ -36,7 +37,7 @@ export default function MenuScroller() {
     <section ref={ref} id="menu" className="relative bg-darkroast text-cream grain overflow-hidden">
       <div className="relative z-10 pt-20 md:pt-24 pb-8 md:pb-10 px-5 md:px-10 max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-5">
         <div>
-          <span className="font-mono-label text-cream/60">02 / Menu</span>
+          <span className="font-mono-label text-cream/60">Menu</span>
           <h2 className="font-display text-5xl md:text-7xl leading-[0.95] mt-3">
             Signature <span className="italic text-caramel">pours.</span>
           </h2>
@@ -51,7 +52,7 @@ export default function MenuScroller() {
           data-menu-track
           className="flex gap-4 md:gap-6 pl-5 md:pl-10 h-full items-stretch lg:items-center will-change-transform overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none scroll-px-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
-          {drinks.map((d, i) => (
+          {drinks.map((d) => (
             <article
               key={d.name}
               className="group relative shrink-0 snap-start w-[82vw] sm:w-[420px] md:w-[460px] aspect-[3/4] lg:aspect-auto lg:h-[60vh] rounded-md overflow-hidden bg-espresso"
@@ -63,15 +64,17 @@ export default function MenuScroller() {
                 className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/10 to-transparent" />
-              <div className="absolute top-4 left-4 font-mono-label text-cream/80">
-                N° {String(i + 1).padStart(2, "0")}
-              </div>
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-3">
                 <div className="min-w-0">
                   <h3 className="font-display text-2xl md:text-3xl">{d.name}</h3>
                   <p className="text-cream/70 text-xs md:text-sm mt-1 max-w-[180px] md:max-w-[220px]">{d.note}</p>
                 </div>
                 <button
+                  onClick={() =>
+                    toast.success(`${d.name} added`, {
+                      description: `${d.price} — ready in about 4 minutes.`,
+                    })
+                  }
                   className="pill bg-cream text-espresso border-cream hover:bg-caramel hover:border-caramel shrink-0"
                   aria-label={`Add ${d.name}`}
                 >

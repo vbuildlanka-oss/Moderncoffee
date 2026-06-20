@@ -20,7 +20,7 @@ export default function NewsletterCTA() {
   return (
     <section id="newsletter" className="bg-espresso text-cream py-24 md:py-40 grain relative overflow-hidden">
       <div className="relative z-10 max-w-[1100px] mx-auto px-5 md:px-10 text-center">
-        <span className="font-mono-label text-cream/60">05 / Stay close</span>
+        <span className="font-mono-label text-cream/60">Stay close</span>
         <h2 className="font-display text-[12vw] sm:text-6xl md:text-7xl mt-4 leading-[0.95]">
           First sip on us.<br />
           <span className="italic text-caramel">10% off your first order.</span>

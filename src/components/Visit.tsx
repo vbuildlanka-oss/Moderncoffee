@@ -21,7 +21,7 @@ export default function Visit() {
     <section ref={ref} id="visit" className="bg-background py-20 md:py-32">
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
         <div className="lg:col-span-5">
-          <span className="font-mono-label text-mutedtext">03 / Visit</span>
+          <span className="font-mono-label text-mutedtext">Visit</span>
           <h2 className="font-display text-[14vw] sm:text-6xl md:text-7xl leading-[0.95] mt-3">
             Come <span className="italic text-caramel">slow down.</span>
           </h2>
@@ -44,7 +44,12 @@ export default function Visit() {
                 <div>Sat — Sun <span className="text-mutedtext">8a — 4p</span></div>
               </div>
             </div>
-            <a href="#" className="pill pill-primary">
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=218+Maple+Avenue+Portland+OR+97204"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pill pill-primary"
+            >
               Get directions <span className="arrow">→</span>
             </a>
           </div>
