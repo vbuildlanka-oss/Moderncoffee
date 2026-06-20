@@ -66,12 +66,14 @@ function Index() {
 
       <a
         href="#newsletter"
-        className={`md:hidden fixed bottom-4 left-4 right-4 z-40 pill pill-primary justify-center shadow-lg transition-all duration-500 ${
-          showSticky ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
+        aria-label="Order Online"
+        className={`md:hidden fixed bottom-5 right-5 z-40 pill pill-primary shadow-xl transition-all duration-500 ${
+          showSticky ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95 pointer-events-none"
         }`}
       >
-        Order Online <span className="arrow">→</span>
+        Order <span className="arrow">→</span>
       </a>
+      <Toaster />
     </main>
   );
 }
