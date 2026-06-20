@@ -36,7 +36,7 @@ export default function MenuScroller() {
     <section ref={ref} id="menu" className="relative bg-darkroast text-cream grain overflow-hidden">
       <div className="relative z-10 pt-20 md:pt-24 pb-8 md:pb-10 px-5 md:px-10 max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-5">
         <div>
-          <span className="font-mono-label text-cream/60">02 / Menu</span>
+          <span className="font-mono-label text-cream/60">Menu</span>
           <h2 className="font-display text-5xl md:text-7xl leading-[0.95] mt-3">
             Signature <span className="italic text-caramel">pours.</span>
           </h2>
