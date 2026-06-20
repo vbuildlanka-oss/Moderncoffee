@@ -1,6 +1,7 @@
 import { useGsapContext } from "@/hooks/useGsapContext";
 import { gsap, ScrollTrigger, prefersReducedMotion, isMobileViewport } from "@/lib/gsap";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 const drinks = [
   { name: "Cortado", price: "$4.50", note: "Equal parts espresso & steamed milk.", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=900&q=80" },
