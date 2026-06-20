@@ -83,7 +83,7 @@ export default function Hero() {
             fetchPriority="high"
           />
           <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 flex items-end justify-between text-cream">
-            <span className="font-mono-label text-[0.6rem] md:text-xs">N° 001 / Signature Espresso</span>
+            <span className="font-mono-label text-[0.6rem] md:text-xs">Signature Espresso</span>
             <span className="font-display italic text-xl md:text-2xl">est. ’18</span>
           </div>
         </div>
