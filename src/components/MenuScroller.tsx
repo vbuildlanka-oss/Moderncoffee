@@ -55,7 +55,7 @@ export default function MenuScroller() {
           {drinks.map((d) => (
             <article
               key={d.name}
-              className="group relative shrink-0 snap-start w-[82vw] sm:w-[420px] md:w-[460px] aspect-[3/4] lg:aspect-auto lg:h-[60vh] rounded-md overflow-hidden bg-espresso"
+              className="group relative shrink-0 snap-start w-[78vw] sm:w-[360px] md:w-[420px] h-[58vh] max-h-[440px] sm:h-auto sm:aspect-[3/4] lg:aspect-auto lg:h-[60vh] rounded-md overflow-hidden bg-espresso"
             >
               <img
                 src={d.img}
