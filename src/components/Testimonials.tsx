@@ -25,7 +25,7 @@ export default function Testimonials() {
       onMouseLeave={() => (paused.current = false)}
     >
       <div className="max-w-[1100px] mx-auto px-5 md:px-10 text-center">
-        <span className="font-mono-label text-mutedtext">04 / Stories</span>
+        <span className="font-mono-label text-mutedtext">Stories</span>
         <div className="mt-8 relative min-h-[320px] sm:min-h-[260px] md:min-h-[320px]">
           {quotes.map((q, idx) => (
             <blockquote
