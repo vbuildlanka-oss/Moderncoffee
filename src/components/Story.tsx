@@ -3,19 +3,19 @@ import { gsap, ScrollTrigger, prefersReducedMotion, isMobileViewport } from "@/l
 
 const chapters = [
   {
-    label: "01 / Our Story",
+    label: "Our Story",
     title: "From bean to bloom.",
     body: "We started in a 200-sq-ft corner shop with one machine and a stubborn belief that coffee should be slow, considered, and quietly perfect. Eight years on, that hasn’t changed.",
     img: "https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=1200&q=80",
   },
   {
-    label: "02 / The Roast",
+    label: "The Roast",
     title: "Light hands, dark roast.",
     body: "Every batch is roasted in-house on a 12kg Probat. We profile each origin individually — never chasing a house style, always chasing the bean.",
     img: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=1200&q=80",
   },
   {
-    label: "03 / The Pour",
+    label: "The Pour",
     title: "Twenty seconds of focus.",
     body: "Our baristas train for six months before they pull a shot for you. Because the difference between good and great is measured in milliseconds.",
     img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=80",
