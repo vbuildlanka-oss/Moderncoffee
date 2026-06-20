@@ -52,7 +52,7 @@ export default function MenuScroller() {
           data-menu-track
           className="flex gap-4 md:gap-6 pl-5 md:pl-10 h-full items-stretch lg:items-center will-change-transform overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none scroll-px-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
-          {drinks.map((d, i) => (
+          {drinks.map((d) => (
             <article
               key={d.name}
               className="group relative shrink-0 snap-start w-[82vw] sm:w-[420px] md:w-[460px] aspect-[3/4] lg:aspect-auto lg:h-[60vh] rounded-md overflow-hidden bg-espresso"
