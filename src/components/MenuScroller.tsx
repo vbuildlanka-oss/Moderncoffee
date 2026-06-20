@@ -15,14 +15,15 @@ const drinks = [
 export default function MenuScroller() {
   const ref = useGsapContext<HTMLElement>(() => {
     if (prefersReducedMotion() || isMobileViewport()) return;
+    const panel = ref.current?.querySelector<HTMLElement>("[data-menu-panel]");
     const track = ref.current?.querySelector<HTMLElement>("[data-menu-track]");
-    if (!track) return;
+    if (!panel || !track) return;
 
-    const getDistance = () => track.scrollWidth - window.innerWidth + 80;
+    const getDistance = () => Math.max(0, track.scrollWidth - panel.clientWidth + 80);
 
     const st = ScrollTrigger.create({
-      trigger: ref.current,
-      start: "top top",
+      trigger: panel,
+      start: "bottom bottom",
       end: () => `+=${getDistance()}`,
       pin: true,
       scrub: 0.8,
@@ -47,7 +48,7 @@ export default function MenuScroller() {
         </p>
       </div>
 
-      <div className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0">
+      <div data-menu-panel className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0">
         <div
           data-menu-track
           className="flex gap-4 md:gap-6 pl-5 md:pl-10 h-full items-stretch lg:items-center will-change-transform overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none scroll-px-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -64,7 +65,7 @@ export default function MenuScroller() {
                 className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-3">
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div className="min-w-0">
                   <h3 className="font-display text-2xl md:text-3xl">{d.name}</h3>
                   <p className="text-cream/70 text-xs md:text-sm mt-1 max-w-[180px] md:max-w-[220px]">{d.note}</p>
