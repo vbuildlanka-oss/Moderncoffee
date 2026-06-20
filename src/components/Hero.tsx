@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="lg:col-span-7 relative z-10 order-2 lg:order-1" data-parallax-text>
           <div className="overflow-hidden">
             <span data-reveal-label className="font-mono-label inline-block text-mutedtext">
-              01 — Specialty Coffee, Est. 2018
+              Specialty Coffee, Est. 2018
             </span>
           </div>
 
