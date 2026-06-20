@@ -21,7 +21,7 @@ export default function Visit() {
     <section ref={ref} id="visit" className="bg-background py-20 md:py-32">
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
         <div className="lg:col-span-5">
-          <span className="font-mono-label text-mutedtext">03 / Visit</span>
+          <span className="font-mono-label text-mutedtext">Visit</span>
           <h2 className="font-display text-[14vw] sm:text-6xl md:text-7xl leading-[0.95] mt-3">
             Come <span className="italic text-caramel">slow down.</span>
           </h2>
