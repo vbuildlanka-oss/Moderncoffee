@@ -9,6 +9,7 @@ import Visit from "@/components/Visit";
 import Testimonials from "@/components/Testimonials";
 import NewsletterCTA from "@/components/NewsletterCTA";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
