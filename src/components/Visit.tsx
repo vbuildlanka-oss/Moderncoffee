@@ -44,7 +44,12 @@ export default function Visit() {
                 <div>Sat — Sun <span className="text-mutedtext">8a — 4p</span></div>
               </div>
             </div>
-            <a href="#" className="pill pill-primary">
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=218+Maple+Avenue+Portland+OR+97204"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pill pill-primary"
+            >
               Get directions <span className="arrow">→</span>
             </a>
           </div>
