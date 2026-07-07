@@ -10,14 +10,14 @@ export default function Hero() {
     const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
     tl.from("[data-reveal-label]", { y: 30, opacity: 0, duration: 0.8 })
-      .from(
-        "[data-reveal-word]",
-        { yPercent: 110, duration: 1.2, stagger: 0.08 },
-        "-=0.4",
-      )
+      .from("[data-reveal-word]", { yPercent: 110, duration: 1.2, stagger: 0.08 }, "-=0.4")
       .from("[data-reveal-line]", { y: 20, opacity: 0, duration: 0.9, stagger: 0.1 }, "-=0.7")
       .from("[data-reveal-cta]", { y: 20, opacity: 0, duration: 0.8, stagger: 0.1 }, "-=0.6")
-      .from("[data-reveal-media]", { scale: 1.15, opacity: 0, duration: 1.6, ease: "expo.out" }, "<-0.4");
+      .from(
+        "[data-reveal-media]",
+        { scale: 1.15, opacity: 0, duration: 1.6, ease: "expo.out" },
+        "<-0.4",
+      );
 
     gsap.to("[data-parallax-img]", {
       yPercent: 18,
@@ -46,12 +46,20 @@ export default function Hero() {
 
           <h1 className="font-display text-[15vw] sm:text-[13vw] lg:text-[10.5vw] leading-[0.92] mt-5 md:mt-6 tracking-[-0.04em]">
             <span className="block overflow-hidden">
-              <span data-reveal-word className="inline-block">Slow</span>{" "}
-              <span data-reveal-word className="inline-block">coffee.</span>
+              <span data-reveal-word className="inline-block">
+                Slow
+              </span>{" "}
+              <span data-reveal-word className="inline-block">
+                coffee.
+              </span>
             </span>
             <span className="block overflow-hidden italic text-caramel">
-              <span data-reveal-word className="inline-block">Quietly</span>{" "}
-              <span data-reveal-word className="inline-block">perfect.</span>
+              <span data-reveal-word className="inline-block">
+                Quietly
+              </span>{" "}
+              <span data-reveal-word className="inline-block">
+                perfect.
+              </span>
             </span>
           </h1>
 
@@ -59,8 +67,8 @@ export default function Hero() {
             data-reveal-line
             className="mt-6 md:mt-8 max-w-md text-mutedtext text-base md:text-lg leading-relaxed"
           >
-            A neighborhood roastery pulling shots from single-origin beans we
-            source, roast, and brew with intention. No noise. Just craft.
+            A neighborhood roastery pulling shots from single-origin beans we source, roast, and
+            brew with intention. No noise. Just craft.
           </p>
 
           <div className="mt-8 md:mt-10 flex flex-wrap gap-3">
@@ -73,7 +81,10 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 relative h-[42vh] sm:h-[50vh] lg:h-[78vh] overflow-hidden rounded-md order-1 lg:order-2" data-reveal-media>
+        <div
+          className="lg:col-span-5 relative h-[42vh] sm:h-[50vh] lg:h-[78vh] overflow-hidden rounded-md order-1 lg:order-2"
+          data-reveal-media
+        >
           <img
             data-parallax-img
             src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&q=80"

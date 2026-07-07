@@ -4,12 +4,42 @@ import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
 const drinks = [
-  { name: "Cortado", price: "$4.50", note: "Equal parts espresso & steamed milk.", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=900&q=80" },
-  { name: "Pour Over", price: "$5.00", note: "Single origin, brewed to order.", img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=900&q=80" },
-  { name: "Flat White", price: "$4.75", note: "Velvet microfoam, double ristretto.", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=900&q=80" },
-  { name: "Espresso", price: "$3.50", note: "Our seasonal house blend.", img: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=900&q=80" },
-  { name: "Iced Latte", price: "$5.25", note: "Slow-steeped, never bitter.", img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=900&q=80" },
-  { name: "Cappuccino", price: "$4.50", note: "Dry foam, dusted with cacao.", img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=900&q=80" },
+  {
+    name: "Cortado",
+    price: "$4.50",
+    note: "Equal parts espresso & steamed milk.",
+    img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=900&q=80",
+  },
+  {
+    name: "Pour Over",
+    price: "$5.00",
+    note: "Single origin, brewed to order.",
+    img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=900&q=80",
+  },
+  {
+    name: "Flat White",
+    price: "$4.75",
+    note: "Velvet microfoam, double ristretto.",
+    img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=900&q=80",
+  },
+  {
+    name: "Espresso",
+    price: "$3.50",
+    note: "Our seasonal house blend.",
+    img: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=900&q=80",
+  },
+  {
+    name: "Iced Latte",
+    price: "$5.25",
+    note: "Slow-steeped, never bitter.",
+    img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=900&q=80",
+  },
+  {
+    name: "Cappuccino",
+    price: "$4.50",
+    note: "Dry foam, dusted with cacao.",
+    img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=900&q=80",
+  },
 ];
 
 export default function MenuScroller() {
@@ -48,7 +78,10 @@ export default function MenuScroller() {
         </p>
       </div>
 
-      <div data-menu-panel className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0">
+      <div
+        data-menu-panel
+        className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0"
+      >
         <div
           data-menu-track
           className="flex gap-4 md:gap-6 pl-5 md:pl-10 h-full items-stretch lg:items-center will-change-transform overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none scroll-px-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -68,7 +101,9 @@ export default function MenuScroller() {
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div className="min-w-0">
                   <h3 className="font-display text-2xl md:text-3xl">{d.name}</h3>
-                  <p className="text-cream/70 text-xs md:text-sm mt-1 max-w-[180px] md:max-w-[220px]">{d.note}</p>
+                  <p className="text-cream/70 text-xs md:text-sm mt-1 max-w-[180px] md:max-w-[220px]">
+                    {d.note}
+                  </p>
                 </div>
                 <button
                   onClick={() =>

@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
 const quotes = [
-  { q: "The best cortado on the West Coast. I’d cross town for it.", a: "Mara K. — Portland Monthly" },
-  { q: "Quiet, intentional, and absurdly good. My new ritual.", a: "Daniel R. — Regular since ’21" },
+  {
+    q: "The best cortado on the West Coast. I’d cross town for it.",
+    a: "Mara K. — Portland Monthly",
+  },
+  {
+    q: "Quiet, intentional, and absurdly good. My new ritual.",
+    a: "Daniel R. — Regular since ’21",
+  },
   { q: "They treat coffee the way a good kitchen treats produce.", a: "Sasha L. — Eater PDX" },
 ];
 

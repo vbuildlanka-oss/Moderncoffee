@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,9 +30,9 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between">
-        <Link to="/" className="font-display text-2xl tracking-tight">
+        <a href="/" className="font-display text-2xl tracking-tight">
           Brew<span className="text-caramel">.</span>Bloom
-        </Link>
+        </a>
 
         <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
@@ -53,18 +52,20 @@ export default function Navbar() {
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <button
-              className="md:hidden p-2 -mr-2"
-              aria-label="Open menu"
-            >
+            <button className="md:hidden p-2 -mr-2" aria-label="Open menu">
               <Menu className="size-6" />
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-full bg-espresso text-cream border-0 p-0">
+          <SheetContent
+            side="right"
+            className="w-full sm:w-full bg-espresso text-cream border-0 p-0"
+          >
             <SheetTitle className="sr-only">Navigation</SheetTitle>
             <div className="flex flex-col h-full p-8">
               <div className="flex items-center justify-between">
-                <span className="font-display text-2xl">Brew<span className="text-caramel">.</span>Bloom</span>
+                <span className="font-display text-2xl">
+                  Brew<span className="text-caramel">.</span>Bloom
+                </span>
                 <button onClick={() => setOpen(false)} aria-label="Close menu">
                   <X className="size-6" />
                 </button>

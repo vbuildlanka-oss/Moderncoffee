@@ -32,7 +32,8 @@ export default function Visit() {
                 <MapPin className="size-3.5" /> Address
               </div>
               <p className="font-display text-2xl mt-2 leading-snug">
-                218 Maple Avenue<br /> Portland, OR 97204
+                218 Maple Avenue
+                <br /> Portland, OR 97204
               </p>
             </div>
             <div>
@@ -40,8 +41,12 @@ export default function Visit() {
                 <Clock className="size-3.5" /> Hours
               </div>
               <div className="mt-2 font-display text-2xl space-y-1 leading-snug">
-                <div>Mon — Fri <span className="text-mutedtext">7a — 5p</span></div>
-                <div>Sat — Sun <span className="text-mutedtext">8a — 4p</span></div>
+                <div>
+                  Mon — Fri <span className="text-mutedtext">7a — 5p</span>
+                </div>
+                <div>
+                  Sat — Sun <span className="text-mutedtext">8a — 4p</span>
+                </div>
               </div>
             </div>
             <a
