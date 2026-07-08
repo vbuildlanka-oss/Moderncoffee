@@ -41,20 +41,46 @@ export default function Story() {
       cards.forEach((c, i) => gsap.set(c, { opacity: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.96 }));
 
       const total = chapters.length;
+      // Scroll distance (in % of viewport height) each chapter is held before
+      // advancing. Kept short so a single scroll gesture flips to the next
+      // image, instead of the previous ~67vh (several scrolls) dead zone.
+      const segmentVh = 22;
+      let currentIdx = 0;
+
+      const showChapter = (idx: number) => {
+        headings.forEach((h, i) =>
+          gsap.to(h, {
+            opacity: i === idx ? 1 : 0,
+            y: i === idx ? 0 : 20,
+            duration: 0.45,
+            ease: "power2.out",
+            overwrite: true,
+          }),
+        );
+        cards.forEach((c, i) =>
+          gsap.to(c, {
+            opacity: i === idx ? 1 : 0,
+            scale: i === idx ? 1 : 0.96,
+            duration: 0.5,
+            ease: "power2.out",
+            overwrite: true,
+          }),
+        );
+      };
+
       ScrollTrigger.create({
         trigger: refObj.current,
         start: "top top",
-        end: `+=${(total - 1) * 100}%`,
+        end: `+=${total * segmentVh}%`,
         pin: ".story-pin",
-        scrub: 0.6,
+        // Low scrub keeps the switch tightly coupled to the scroll input so it
+        // feels immediate rather than lagging behind.
+        scrub: 0.3,
         onUpdate: (self) => {
           const idx = Math.min(total - 1, Math.floor(self.progress * total));
-          headings.forEach((h, i) =>
-            gsap.to(h, { opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 20, duration: 0.4 }),
-          );
-          cards.forEach((c, i) =>
-            gsap.to(c, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 0.96, duration: 0.5 }),
-          );
+          if (idx === currentIdx) return;
+          currentIdx = idx;
+          showChapter(idx);
         },
       });
     } else {
