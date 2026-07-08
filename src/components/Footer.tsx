@@ -17,9 +17,14 @@ export default function Footer() {
         "--fill": "100%",
         ease: "none",
         scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-          end: "bottom 60%",
+          // Trigger on the whole footer and end at "bottom bottom" — the exact
+          // maximum scroll position of the page — so the fill is guaranteed to
+          // reach 100% as the visitor reaches the bottom. (The previous
+          // "bottom 60%" end was unreachable for a bottom-of-page element, so
+          // the animation never completed.)
+          trigger: ref.current,
+          start: "top 85%",
+          end: "bottom bottom",
           scrub: 0.6,
         },
       } as gsap.TweenVars,
@@ -71,10 +76,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden [container-type:inline-size]">
           <div
             data-wordmark
-            className="wordmark-outline font-display text-[22vw] leading-[0.85] tracking-[-0.04em] text-center md:text-left whitespace-nowrap select-none"
+            className="wordmark-outline font-display leading-[0.9] tracking-[-0.04em] text-center md:text-left whitespace-nowrap select-none"
           >
             BREW & BLOOM
           </div>

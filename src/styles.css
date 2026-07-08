@@ -184,7 +184,11 @@
   }
 
   .wordmark-outline {
-    -webkit-text-stroke: 1.5px var(--cream);
+    /* Sized relative to the container width (see the [container-type] wrapper)
+       so the full "BREW & BLOOM" always fits on one line and is never clipped,
+       from mobile up to the 1400px max container. */
+    font-size: 12.5cqw;
+    -webkit-text-stroke: max(1px, 0.14cqw) var(--cream);
     color: transparent;
     background: linear-gradient(90deg, var(--caramel), var(--caramel));
     background-size: var(--fill, 0%) 100%;
