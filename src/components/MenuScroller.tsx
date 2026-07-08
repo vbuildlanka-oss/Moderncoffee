@@ -80,7 +80,7 @@ export default function MenuScroller() {
 
       <div
         data-menu-panel
-        className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0"
+        className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0 bg-darkroast"
       >
         <div
           data-menu-track
