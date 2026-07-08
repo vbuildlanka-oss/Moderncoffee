@@ -84,13 +84,17 @@ npx vercel --prod
 
 ### GitHub Pages
 
-Build and publish `dist/` (e.g. via GitHub Actions or `gh-pages`). If the site
-is served from a subpath (`https://user.github.io/repo/`), set Vite's base:
+Automated via `.github/workflows/deploy.yml`. GitHub Pages requires a **public
+repository** (or a paid plan) to deploy.
 
-```bash
-# build with a base path
-npx vite build --base=/repo/
-```
+One-time setup: in the repo, go to **Settings > Pages > Build and deployment**
+and set **Source** to **GitHub Actions**.
+
+After that, every push to `main` builds the app and publishes it to
+`https://<user>.github.io/Moderncoffee/`. The workflow sets
+`BASE_PATH=/Moderncoffee/` so asset URLs resolve under the repo subpath, and
+copies `index.html` to `404.html` as an SPA fallback (Pages has no redirect
+rules). If you rename the repo, update `BASE_PATH` in the workflow to match.
 
 The `public/_redirects` file provides an SPA fallback for hosts that honor it
 (Netlify, Cloudflare Pages).
