@@ -56,7 +56,13 @@ export default function MenuScroller() {
       start: "bottom bottom",
       end: () => `+=${getDistance()}`,
       pin: true,
-      scrub: 0.8,
+      // Anticipate the pin so the panel eases into its fixed position rather
+      // than snapping/pausing to "settle" the moment smooth scrolling reaches
+      // the trigger point.
+      anticipatePin: 1,
+      // A lower scrub lets the horizontal motion begin promptly once pinned,
+      // avoiding a "pinned but nothing moving yet" dead moment at the start.
+      scrub: 0.5,
       invalidateOnRefresh: true,
       animation: gsap.to(track, { x: () => -getDistance(), ease: "none" }),
     });

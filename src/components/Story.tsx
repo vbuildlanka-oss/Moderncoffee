@@ -73,6 +73,10 @@ export default function Story() {
         start: "top top",
         end: `+=${total * segmentVh}%`,
         pin: ".story-pin",
+        // Anticipate the pin so the section eases into its pinned position
+        // instead of visibly snapping/pausing when smooth scrolling reaches
+        // the trigger point.
+        anticipatePin: 1,
         // Low scrub keeps the switch tightly coupled to the scroll input so it
         // feels immediate rather than lagging behind.
         scrub: 0.3,
