@@ -53,15 +53,14 @@ export default function MenuScroller() {
 
     const st = ScrollTrigger.create({
       trigger: panel,
-      start: "bottom bottom",
+      // Pin as soon as the panel reaches the top of the viewport so the
+      // horizontal scroll begins immediately — no dead-scroll gap while the
+      // panel "settles" into position.
+      start: "top top",
       end: () => `+=${getDistance()}`,
       pin: true,
-      // Anticipate the pin so the panel eases into its fixed position rather
-      // than snapping/pausing to "settle" the moment smooth scrolling reaches
-      // the trigger point.
+      pinSpacing: true,
       anticipatePin: 1,
-      // A lower scrub lets the horizontal motion begin promptly once pinned,
-      // avoiding a "pinned but nothing moving yet" dead moment at the start.
       scrub: 0.5,
       invalidateOnRefresh: true,
       animation: gsap.to(track, { x: () => -getDistance(), ease: "none" }),
@@ -86,7 +85,7 @@ export default function MenuScroller() {
 
       <div
         data-menu-panel
-        className="relative z-10 h-auto lg:h-[70vh] overflow-hidden pb-12 lg:pb-0 bg-darkroast"
+        className="relative z-10 h-auto lg:h-dvh overflow-hidden pb-12 lg:pb-0 bg-darkroast"
       >
         <div
           data-menu-track
@@ -95,7 +94,7 @@ export default function MenuScroller() {
           {drinks.map((d) => (
             <article
               key={d.name}
-              className="group relative shrink-0 snap-start w-[78vw] sm:w-[360px] md:w-[420px] h-[58vh] max-h-[440px] sm:h-auto sm:aspect-[3/4] lg:aspect-auto lg:h-[60vh] rounded-md overflow-hidden bg-espresso"
+              className="group relative shrink-0 snap-start w-[78vw] sm:w-[360px] md:w-[420px] h-[58vh] max-h-[440px] sm:h-auto sm:aspect-[3/4] lg:aspect-auto lg:h-[70vh] rounded-md overflow-hidden bg-espresso"
             >
               <img
                 src={d.img}
